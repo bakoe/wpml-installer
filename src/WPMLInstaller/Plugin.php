@@ -45,16 +45,19 @@ class Plugin implements PluginInterface, EventSubscriberInterface
         'wpml/wpml-multilingual-cms' => ['download_id' => 6088],
         'wpml/wpml-string-translation' => ['download_id' => 6092],
         'wpml/wpml-translation-management' => ['download_id' => 6094],
+        'wpml/wpml-media' => ['download_id' => 7474],
         'wpml/wpml-sticky-links' => ['download_id' => 6090],
         'wpml/wpml-cms-nav' => ['download_id' => 6096],
-        'wpml/wpml-media' => ['download_id' => 7474],
-        'wpml/wpml-all-import' => ['download_id' => 720221],
         'wpml/woocommerce-multilingual' => ['download_id' => 637370],
         'wpml/gravityforms-multilingual' => ['download_id' => 8882],
+        'wpml/contact-form-7-multilingual' => ['download_id' => 3156699],
+        'wpml/wpml-ninja-forms' => ['download_id' => 5342487],
+        'wpml/wpml-wpforms' => ['download_id' => 5368995],
+        'wpml/wpml-all-import' => ['download_id' => 720221],
         'wpml/acfml' => ['download_id' => 1097589],
-        'wpml/mailchimp-for-wordpress-multilingual' => ['download_id' => 1442229],
-        'wpml/woocommerce-gateways-country-limiter' => ['download_id' => 361267],
-        'wpml/wp-seo-multilingual' => ['download_id' => 3566177]
+        'wpml/wpml-mailchimp-for-wp' => ['download_id' => 1442229],
+        // 'wpml/woocommerce-gateways-country-limiter' => ['download_id' => 361267],
+        'wpml/wp-seo-multilingual' => ['download_id' => 3566177],
     ];
 
     /**
