@@ -11,7 +11,6 @@ use Composer\IO\IOInterface;
 use Composer\Plugin\PluginEvents;
 use Composer\Plugin\PluginInterface;
 use Composer\Plugin\PreFileDownloadEvent;
-use Dotenv\Dotenv;
 use Enelogic\WPMLInstaller\Exceptions\MissingKeyException;
 
 /**
@@ -53,6 +52,7 @@ class Plugin implements PluginInterface, EventSubscriberInterface
         'wpml/contact-form-7-multilingual' => ['download_id' => 3156699],
         'wpml/wpml-ninja-forms' => ['download_id' => 5342487],
         'wpml/wpml-wpforms' => ['download_id' => 5368995],
+        'wpml/buddypress-multilingual' => ['download_url' => 'https://downloads.wordpress.org/plugin/buddypress-multilingual.{%VERSION}.zip'],
         'wpml/wpml-all-import' => ['download_id' => 720221],
         'wpml/acfml' => ['download_id' => 1097589],
         'wpml/wpml-mailchimp-for-wp' => ['download_id' => 1442229],
@@ -134,9 +134,16 @@ class Plugin implements PluginInterface, EventSubscriberInterface
 
         if (array_key_exists($package->getName(), self::WPML_PACKAGES)) {
             $version = $this->validateVersion($package->getPrettyVersion(), $package->getName());
-            $package->setDistUrl(
-                $this->addParameterToUrl($package->getDistUrl(), 'version', $version)
-            );
+            $packageData = self::WPML_PACKAGES[$package->getName()];
+
+            if (\array_key_exists('download_url', $packageData)) {
+                $downloadUrl = $packageData['download_url'];
+                $package->setDistUrl(preg_replace('/{%version}/i', $version, $downloadUrl));
+            } else {
+                $package->setDistUrl(
+                    $this->addParameterToUrl($package->getDistUrl(), 'version', $version)
+                );
+            }
         }
     }
 
@@ -156,11 +163,13 @@ class Plugin implements PluginInterface, EventSubscriberInterface
         $package = $this->getPackageFromOperation($event->getOperation());
 
         if (array_key_exists($package->getName(), self::WPML_PACKAGES)) {
-            $downloadId = self::WPML_PACKAGES[$package->getName()]['download_id'];
+            $packageData = self::WPML_PACKAGES[$package->getName()];
 
-            $package->setDistUrl(
-                $this->addParameterToUrl($package->getDistUrl(), 'download', $downloadId)
-            );
+            if (\array_key_exists('download_id', $packageData)) {
+                $package->setDistUrl(
+                    $this->addParameterToUrl($package->getDistUrl(), 'download', $packageData['download_id'])
+                );
+            }
         }
     }
 
@@ -292,7 +301,7 @@ class Plugin implements PluginInterface, EventSubscriberInterface
     protected function loadDotEnv()
     {
         if (file_exists(getcwd().DIRECTORY_SEPARATOR.'.env')) {
-            $dotenv = Dotenv::createImmutable(getcwd());
+            $dotenv = \Dotenv\Dotenv::createImmutable(getcwd());
             $dotenv->load();
         }
     }
