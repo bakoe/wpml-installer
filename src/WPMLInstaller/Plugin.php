@@ -53,7 +53,8 @@ class Plugin implements PluginInterface, EventSubscriberInterface
         'wpml/gravityforms-multilingual' => ['download_id' => 8882],
         'wpml/acfml' => ['download_id' => 1097589],
         'wpml/mailchimp-for-wordpress-multilingual' => ['download_id' => 1442229],
-        'wpml/woocommerce-gateways-country-limiter' => ['download_id' => 361267]
+        'wpml/woocommerce-gateways-country-limiter' => ['download_id' => 361267],
+        'wpml/wp-seo-multilingual' => ['download_id' => 3566177]
     ];
 
     /**
