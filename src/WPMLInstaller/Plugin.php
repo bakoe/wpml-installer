@@ -49,7 +49,7 @@ class Plugin implements PluginInterface, EventSubscriberInterface
         'wpml/wpml-cms-nav' => ['download_id' => 6096],
         'wpml/wpml-media' => ['download_id' => 7474],
         'wpml/wpml-all-import' => ['download_id' => 720221],
-        //'wpml/woocommerce-multilingual' => ['download_id' => 1111],
+        'wpml/woocommerce-multilingual' => ['download_id' => 637370],
         'wpml/gravityforms-multilingual' => ['download_id' => 8882],
         'wpml/acfml' => ['download_id' => 1097589],
         'wpml/mailchimp-for-wordpress-multilingual' => ['download_id' => 1442229],
