@@ -289,7 +289,7 @@ class Plugin implements PluginInterface, EventSubscriberInterface
     protected function loadDotEnv()
     {
         if (file_exists(getcwd().DIRECTORY_SEPARATOR.'.env')) {
-            $dotenv = new Dotenv(getcwd());
+            $dotenv = Dotenv::createImmutable(getcwd());
             $dotenv->load();
         }
     }
